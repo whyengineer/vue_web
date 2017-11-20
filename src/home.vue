@@ -92,9 +92,6 @@
         },
         mounted: function () {
           window.addEventListener('resize', this.handleResize)
-          document.addEventListener('touchmove', function (e) {
-              e.preventDefault()
-          })
         },
         beforeDestroy: function () {
           window.removeEventListener('resize', this.handleResize)
