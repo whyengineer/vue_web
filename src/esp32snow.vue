@@ -3,10 +3,10 @@
     <Row>
        
         <Col span="8" offset="4" id="info1">
-            <img src="./assets/espsnowtop.png" id="img">
+            <img src="https://img.whyengineer.com/espsnowtop.png" id="img">
         </Col>
         <Col span="8" id="info2">
-            <img src="./assets/espsnowback.png" id="img">
+            <img src="https://img.whyengineer.com/espsnowback.png" id="img">
         </Col>
          <Col span="18" id="name">
             <h1>ESP32-SNOW SPEC</h1>

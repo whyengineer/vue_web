@@ -6,7 +6,7 @@
                 :winHeight="cavansH"
                 :winWidth="cavansW">
                 </Fcanvas>
-                        <img src="./assets/logo.png" :style="{width:logoW,height:logoH,top:logoTop,left:logoLeft}" id="logoimg">
+                        <img src="https://img.whyengineer.com/logo.png" :style="{width:logoW,height:logoH,top:logoTop,left:logoLeft}" id="logoimg">
                         <p id="myname" :style="{top:nameTop,left:nameLeft,fontSize:nameSize}">WhyEngineer</p>
             </div>
         </CarouselItem>

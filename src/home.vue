@@ -7,7 +7,7 @@
           <Card style="height:450px" id="card1">
              <p slot="title">ESP32_SNOW</p>
              <div style="text-align:center">
-              <img src="./assets/esp32_snow.png" style="width:70%;height:70%">
+              <img src="https://img.whyengineer.com/esp32_snow.png" style="width:70%;height:70%">
               <Row style="padding:50px">
                 <Col span="11">
                 <Button type="success" long shape="circle"  size="large" @click="snowlearn">Learn More</Button>
@@ -23,7 +23,7 @@
           <Card style="height:450px">
                <p slot="title">ESP32_CIRCLE</p>
                <div style="text-align:center">
-                <img src="./assets/esp32_circle.png" style="width:32%;height:32%">
+                <img src="https://img.whyengineer.com/esp32_circle.png" style="width:32%;height:32%">
                 <Row style="padding:50px">
                   <Col span="11">
                   <Button type="success" long shape="circle"  size="large">Learn More</Button>
