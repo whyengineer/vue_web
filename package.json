@@ -9,6 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "font-awesome-webpack": "0.0.5-beta.2",
     "iview": "^2.6.0",
     "vue": "^2.4.4",
     "vue-quick-menu": "^1.0.6",
