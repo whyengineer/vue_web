@@ -8,10 +8,18 @@
         <Col span="8" id="info2">
             <img src="https://img.whyengineer.com/espsnowback.png" id="img">
         </Col>
-         <Col span="18" id="name">
+    </Row>
+    <Row style="padding:30px">
+        <Col span="8" id="btn"><Button type="primary" long shape="circle"  size="large" @click="snowgit"><i class="fa fa-github fa-lg" aria-hidden="true"></i> Github</Button></Col>
+        <Col span="8" id="btn"><Button type="primary" long shape="circle"  size="large" @click="snowwiki"><i class="fa fa-wikipedia-w fa-lg" aria-hidden="true"></i> Wiki</Button></Col>
+        <Col span="8" id="btn"><Button type="primary" long shape="circle"  size="large" @click="snowbuy"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i> Buy It</Button></Col>
+    </Row>
+    <Row>
+        <Col span="24" id="name">
             <h1>ESP32-SNOW SPEC</h1>
         </Col>
-        <Col span="6" id="name"><Button type="primary" long shape="circle"  size="large" @click="snowbuy">Buy It</Button></Col>
+    </Row>
+    <Row>
         <Col span="20" offset="2">
             <Card >
                 <div style="text-align:center">
@@ -52,6 +60,14 @@
                 //todo:
                 window.open("https://item.taobao.com/item.htm?spm=686.1000925.0.0.7b6366f3KnxVIH&id=561537244126")
               },
+            snowgit:function(){
+                console.log("snow buy")
+                //todo:
+                window.open("https://github.com/whyengineer/esp32_snow")
+              },
+            snowwiki:function(){
+                window.open("https://wiki.whyengineer.com/index.php/ESP32-SNOW%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3")
+            }
         }
     }
 </script>
@@ -59,12 +75,17 @@
     body{
         background-color: #081320;
     }
+    #btn{
+        padding: 50px;
+    }
     #name{
         color: white;
         text-align: left;
-        padding: 50px;
+        padding: 20px;
+        padding-bottom: 70px;
+        padding-top: 0px;
         line-height: 50px;
-        vertical-align: ;
+        vertical-align:center;
     }
     #info1{
         text-align: right;
