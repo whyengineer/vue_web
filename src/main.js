@@ -7,6 +7,7 @@ import VueRouter from "vue-router";
 import App from './App.vue'
 import Home from './home.vue'
 import Espsnow from "./esp32snow.vue"
+import Pano from "./panorama.vue"
 
 Vue.use(iView);
 Vue.use(VueRouter);
@@ -19,6 +20,10 @@ const routes = [
     {
         path:"/home",
         component:Home
+    },
+    {
+        path:"/pano",
+        component:Pano
     },
     {
         path: '/', 

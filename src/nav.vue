@@ -70,11 +70,13 @@
                 if(name==1){
                     this.$router.push('/home')
                 }
-                if(name=="2-2"){
+                else if(name=="2-2"){
                     //window.location.href="/esp32snow"
                     this.$router.push('/esp32snow')
+                }else if(name=="2-1"){
+                     this.$router.push('/pano')
                 }
-                if(name==3){
+                else if(name==3){
                     window.open("https://wiki.whyengineer.com")
                 }
                 else if(name==4){
