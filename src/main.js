@@ -8,6 +8,7 @@ import App from './App.vue'
 import Home from './home.vue'
 import Espsnow from "./esp32snow.vue"
 import Pano from "./panorama.vue"
+import * as THREE from 'three'
 
 Vue.use(iView);
 Vue.use(VueRouter);
