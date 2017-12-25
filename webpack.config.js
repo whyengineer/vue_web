@@ -48,6 +48,9 @@ module.exports = {
       }
     ]
   },
+  node: {
+    fs: 'empty'
+  },
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
@@ -56,7 +59,15 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+    proxy:[
+      {
+        context:['/api/**','/socket.io/**'],
+        target:'http://127.0.0.1:1323',
+        secure:false
+      }
+    ]
+      
   },
   performance: {
     hints: false

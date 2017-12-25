@@ -9,11 +9,20 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "ajv": "^5.5.2",
+    "axios": "^0.17.1",
+    "bufferutil": "^3.0.3",
     "font-awesome-webpack": "0.0.5-beta.2",
+    "fs": "0.0.1-security",
     "iview": "^2.6.0",
+    "socket.io": "^2.0.4",
+    "three": "^0.89.0",
     "vue": "^2.4.4",
     "vue-quick-menu": "^1.0.6",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-socket.io": "^2.1.1-a",
+    "vue-websocket": "^0.2.2",
+    "ws": "^3.3.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

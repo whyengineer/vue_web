@@ -2,16 +2,19 @@ import Vue from 'vue'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import 'font-awesome-webpack'
-import VueRouter from "vue-router";
+import VueRouter from "vue-router"
 
 import App from './App.vue'
 import Home from './home.vue'
 import Espsnow from "./esp32snow.vue"
 import Pano from "./panorama.vue"
 import * as THREE from 'three'
+import VueSocketio from 'vue-socket.io';
+import socketio from 'socket.io-client'
 
 Vue.use(iView);
 Vue.use(VueRouter);
+Vue.use(VueSocketio, socketio('http://127.0.0.1:1323'));
 
 const routes = [
     {
