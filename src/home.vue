@@ -3,9 +3,28 @@
      <h1>Hello world</h1>
     <Button type="primary" @click="test">Primary</Button>
     <chart
-    :data="datacollection" 
-    :options="{responsive: false, maintainAspectRatio: false}" 
-    :width="400" 
+    :chart-data="datacollection" 
+    :options="{responsive: false,
+    scales: {
+      yAxes: [{
+                ticks: {
+                    suggestedMin: 30,
+                    suggestedMax: 50,
+                    autoSkipPadding:5
+                }
+            }],
+      xAxes: [{
+                offset:true,
+                ticks: {
+                    autoSkip:true,
+                    autoSkipPadding:10,
+                    padding:25
+                }
+            }]
+    }
+            
+    }" 
+    :width="500" 
     :height="200"
     ></chart>
   </div>
@@ -20,23 +39,59 @@ export default {
     chart 
   },
   mounted(){
+     this.renderChart()
+     console.log(this.timeLables)
+     console.log(this.nowts)
+     setInterval(() => { 
+            this.renderChart();
+     }, 1000*60)
     
   },
   sockets: {
     connect: function(){
       console.log('socket connected')
     },
-    customEmit: function(val){
-      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
-    },
     btcusdt:function(val){
-      console.log(val)
+      //console.log(val)
     },
     ethusdt:function(val){
-      console.log(val)
+      //console.log(val)
     }
   },
   methods:{
+    getyaxi:function(){
+      for(var i=0;i<60;i++){
+        this.valueLables.push(i)
+      }
+    },
+    getxaxi:function(){
+      var a=new Date()
+      this.nowts=	Math.round(a.getTime()/1000)
+      for(var i=this.nowts-3600;i<this.nowts;i+=60){
+        var date=new Date(i*1000)
+        var hours = date.getHours()
+        var minutes = "0" + date.getMinutes()
+        this.timeLables.push(hours+':'+minutes.substr(-2))
+      }
+    },
+    renderChart:function(){
+      console.log("render chart")
+      this.timeLables=[]
+      this.valueLables=[]
+      this.getxaxi()
+      this.getyaxi()
+      this.datacollection={
+        labels: this.timeLables,
+        datasets: [
+          {
+            label: "btcusdt",
+            fill:false,
+            backgroundColor: '#f87979',
+            data: this.valueLables
+          }
+        ]
+      }
+    },
     test:function(){
       console.log("click")
       this.$socket.emit('chat_message', "hello world");
@@ -52,18 +107,10 @@ export default {
   },
   data(){
     return{
-      datacollection:{
-        labels: ['January', 'February'],
-        
-        datasets: [
-          {
-            fill:'-1',
-            label: 'Data One',
-            backgroundColor: '#f87979',
-            data: [40, 20]
-          }
-        ]
-      }
+      timeLables:[],
+      valueLables:[],
+      nowts:null,
+      datacollection:null
     }
   }
 }
