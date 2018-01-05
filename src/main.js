@@ -11,10 +11,12 @@ import Pano from "./panorama.vue"
 import * as THREE from 'three'
 import VueSocketio from 'vue-socket.io';
 import socketio from 'socket.io-client'
+import ECharts from 'vue-echarts'
 
 Vue.use(iView);
 Vue.use(VueRouter);
 Vue.use(VueSocketio, socketio('http://127.0.0.1:1323'));
+Vue.component('chart', ECharts)
 
 const routes = [
     {

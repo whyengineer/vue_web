@@ -21,6 +21,7 @@
     "three": "^0.89.0",
     "vue": "^2.4.4",
     "vue-chartjs": "^3.0.2",
+    "vue-echarts": "^2.6.0",
     "vue-quick-menu": "^1.0.6",
     "vue-router": "^3.0.1",
     "vue-socket.io": "^2.1.1-a",

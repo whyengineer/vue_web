@@ -2,41 +2,17 @@
   <div id="home">
      <h1>Hello world</h1>
     <Button type="primary" @click="test">Primary</Button>
-    <chart
-    :chart-data="datacollection" 
-    :options="{responsive: false,
-    scales: {
-      yAxes: [{
-                ticks: {
-                    suggestedMin: 30,
-                    suggestedMax: 50,
-                    autoSkipPadding:5
-                }
-            }],
-      xAxes: [{
-                offset:true,
-                ticks: {
-                    autoSkip:true,
-                    autoSkipPadding:10,
-                    padding:25
-                }
-            }]
-    }
-            
-    }" 
-    :width="500" 
-    :height="200"
-    ></chart>
+   <mychart></mychart>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import chart from './chart.vue'
+import mychart from './1chart.vue'
 
 export default {
   components: {
-    chart 
+    mychart 
   },
   mounted(){
      this.renderChart()
@@ -56,6 +32,9 @@ export default {
     },
     ethusdt:function(val){
       //console.log(val)
+    },
+    eosusdt:function(val){
+      console.log(val)
     }
   },
   methods:{
@@ -67,7 +46,7 @@ export default {
     getxaxi:function(){
       var a=new Date()
       this.nowts=	Math.round(a.getTime()/1000)
-      for(var i=this.nowts-3600;i<this.nowts;i+=60){
+      for(var i=this.nowts-3600+1;i<=this.nowts;i+=60){
         var date=new Date(i*1000)
         var hours = date.getHours()
         var minutes = "0" + date.getMinutes()
@@ -75,7 +54,6 @@ export default {
       }
     },
     renderChart:function(){
-      console.log("render chart")
       this.timeLables=[]
       this.valueLables=[]
       this.getxaxi()
