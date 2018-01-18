@@ -1,9 +1,8 @@
 import Vue from 'vue'
-import iView from 'iview'
-import 'iview/dist/styles/iview.css'
-import 'font-awesome-webpack'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import 'font-awesome/css/font-awesome.min.css'
 import VueRouter from "vue-router"
-
 import App from './App.vue'
 import Home from './home.vue'
 import Espsnow from "./esp32snow.vue"
@@ -13,7 +12,7 @@ import VueSocketio from 'vue-socket.io';
 import socketio from 'socket.io-client'
 import ECharts from 'vue-echarts'
 
-Vue.use(iView);
+Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.use(VueSocketio, socketio('api.whyengineer.com'));
 Vue.component('chart', ECharts)

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 对应的组件内容渲染到router-view中 -->
-    <FNav></FNav>   
+    <!-- <FNav></FNav>    -->
     <router-view></router-view>
   </div>
 </template>

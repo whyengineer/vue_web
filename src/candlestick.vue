@@ -1,13 +1,10 @@
 <template>
-<div>
-  <Button type="primary" @click="refresh">Refresh</Button>
-  <chart :options="polar" auto-resize></chart>
-</div>
+  <chart :options="polar" auto-resize ref="bar"></chart>
 </template>
 
 <style>
 .echarts {
-  width:1800;
+  /* widows: 100%; */
 }
 </style>
 
@@ -15,6 +12,7 @@
 import axios from 'axios'
 export default {
   mounted(){
+    
     var now =new Date()
     axios.get('http://api.whyengineer.com/getsstadata',{
       params:{
@@ -26,7 +24,7 @@ export default {
         type:"min1",
         hour:now.getHours(),
         min:now.getMinutes(),
-        num:100
+        num:200
       }
     })
     .then((response)=> {
@@ -37,11 +35,19 @@ export default {
         let value=[]
         value.push(response.data[i].StartPrice)
         value.push(response.data[i].EndPrie)
+        if(response.data[i].LowPrice==0){
+          response.data[i].LowPrice=response.data[i].StartPrice
+        }
         value.push(response.data[i].LowPrice)
+        if(response.data[i].HighPrice==0){
+          response.data[i].HighPrice=response.data[i].EndPrie
+        }
         value.push(response.data[i].HighPrice)
         this.xdata.unshift(time)
         this.ydata.unshift(value)
       }
+      let k= this.$refs.bar
+      k.resize()
     })
     .catch(function (error) {
       console.log(error);
@@ -100,6 +106,9 @@ export default {
              
       }]
     }
+  },
+  created(){
+    
   },
   data: function () {
     return {
