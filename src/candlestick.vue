@@ -12,11 +12,14 @@
 import axios from 'axios'
 export default {
   mounted(){
-    
+    let initdata=[0,0,0,0]
+    // for(var i=0;i<200;i++){
+    //   this.xdata.push(initdata)
+    // }
     var now =new Date()
     axios.get('http://api.whyengineer.com/getsstadata',{
       params:{
-        coin:"ethusdt",
+        coin:this.coin,
         plat:"huobi",
         year:now.getFullYear(),
         month:now.getMonth()+1,
@@ -24,11 +27,12 @@ export default {
         type:"min1",
         hour:now.getHours(),
         min:now.getMinutes(),
-        num:200
+        num:100
       }
     })
     .then((response)=> {
-      console.log(response.data);
+      //console.log(response.data);
+      //this.xdata=[]
       for(var i=0;i<response.data.length;i++){
         //console.log(response.data[i].Day,response.data[i].Hour,response.data[i].Min)
         let time=response.data[i].Hour+':'+response.data[i].Min
@@ -118,9 +122,16 @@ export default {
     }
   },
   methods:{
-    refresh:function(){
-  
+    resize:function(){
+       let k= this.$refs.bar
+       k.resize()
     }
+  },
+  props: {
+    coin:{
+        type:String,
+        default:"btcusdt"
+    },
   }
 }
 </script>

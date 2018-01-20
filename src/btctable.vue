@@ -9,7 +9,7 @@
       </el-table-column>
       <el-table-column
         prop="sell"
-        label="卖出数量"
+        label="卖出数量"                                    
        >
       </el-table-column>
       <el-table-column
