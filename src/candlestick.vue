@@ -11,12 +11,41 @@
 <script>
 import axios from 'axios'
 export default {
+   sockets: {
+    sencbtcusdt:function(val){
+      if(this.coin=="btcusdt"){
+          let obj=JSON.parse(val)
+          this.newdata[1]=obj.StartPrice
+          if(obj.StartPrice>this.newdata[3]||this.newdata[3]==0){
+            this.newdata[3]=obj.StartPrice
+          }
+          if(obj.StartPrice<this.newdata[2]||this.newdata[2]==0){
+            this.newdata[2]=obj.StartPrice
+          }
+          this.ydata[this.ydata.length-1]=this.newdata
+          this.k.mergeOptions(this.polar)
+      }
+    },
+  },
   mounted(){
-    let initdata=[0,0,0,0]
+    this.k= this.$refs.bar
     // for(var i=0;i<200;i++){
     //   this.xdata.push(initdata)
     // }
+    var zerop=new Date()
     var now =new Date()
+    zerop.setMinutes(now.getMinutes()+1)
+    zerop.setSeconds(0)
+    zerop.setMilliseconds(0)
+    setTimeout(()=>{
+      this.xdata.shift()
+      this.ydata.shift()
+      let a=this.newtime
+      let b=this.newdata
+      this.xdata.push(a)
+      this.ydata.push(b)
+      console.log("zero point",this.newdata)
+    },zerop-now)
     axios.get('http://api.whyengineer.com/getsstadata',{
       params:{
         coin:this.coin,
@@ -27,13 +56,14 @@ export default {
         type:"min1",
         hour:now.getHours(),
         min:now.getMinutes(),
-        num:100
+        num:60
       }
     })
     .then((response)=> {
       //console.log(response.data);
       //this.xdata=[]
       for(var i=0;i<response.data.length;i++){
+       
         //console.log(response.data[i].Day,response.data[i].Hour,response.data[i].Min)
         let time=response.data[i].Hour+':'+response.data[i].Min
         let value=[]
@@ -47,6 +77,24 @@ export default {
           response.data[i].HighPrice=response.data[i].EndPrie
         }
         value.push(response.data[i].HighPrice)
+        //fake a newdata
+        if(i==0){
+          this.newdata[0]=response.data[i].EndPrie
+          this.newdata[1]=response.data[i].EndPrie
+          this.newdata[2]=response.data[i].EndPrie
+          this.newdata[3]=response.data[i].EndPrie
+          this.ydata.unshift(this.newdata)
+          if(response.data[i].Min==59){
+            if(response.data[i].Hour==23){
+              this.newdata="0:0"
+            }else{
+              this.newtime=(response.data[i].Hour+1)+':'+0
+            }
+          }else{
+             this.newtime=response.data[i].Hour+':'+(response.data[i].Min+1)
+          }
+          this.xdata.unshift(this.newtime)
+        }
         this.xdata.unshift(time)
         this.ydata.unshift(value)
       }
@@ -116,15 +164,17 @@ export default {
   },
   data: function () {
     return {
+      newdata:[0,0,0,0],
+      newtime:[],
       xdata:[],
       ydata:[],
-      polar:  {}
+      polar:  {},
+      k:{}
     }
   },
   methods:{
     resize:function(){
-       let k= this.$refs.bar
-       k.resize()
+       this.k.resize()
     }
   },
   props: {
