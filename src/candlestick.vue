@@ -11,22 +11,6 @@
 <script>
 import axios from 'axios'
 export default {
-   sockets: {
-    sencbtcusdt:function(val){
-      if(this.coin=="btcusdt"){
-          let obj=JSON.parse(val)
-          this.newdata[1]=obj.StartPrice
-          if(obj.StartPrice>this.newdata[3]||this.newdata[3]==0){
-            this.newdata[3]=obj.StartPrice
-          }
-          if(obj.StartPrice<this.newdata[2]||this.newdata[2]==0){
-            this.newdata[2]=obj.StartPrice
-          }
-          this.ydata[this.ydata.length-1]=this.newdata
-          this.k.mergeOptions(this.polar)
-      }
-    },
-  },
   mounted(){
     this.k= this.$refs.bar
     // for(var i=0;i<200;i++){
@@ -46,7 +30,7 @@ export default {
       this.ydata.push(b)
       console.log("zero point",this.newdata)
     },zerop-now)
-    axios.get('http://api.whyengineer.com/getsstadata',{
+    axios.get('/api/gettrade',{
       params:{
         coin:this.coin,
         plat:"huobi",

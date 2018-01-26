@@ -62,7 +62,7 @@ module.exports = {
     overlay: true,
     proxy:[
       {
-        context:['/api/**','/socket.io/**'],
+        context:['/api/**'],
         target:'http://127.0.0.1:1323',
         secure:false
       }

@@ -1,10 +1,12 @@
 <template>
   <div id="home">
+     <!-- <el-button type="primary" @click="ping">主要按钮</el-button> -->
     <el-tabs :tab-position="tabPosition"   type="border-card" @tab-click="tabclick">
       <el-tab-pane ><span slot="label"><i class="fab fa-bitcoin"></i> BTC</span>
       <div v-if="coin==='btc'">
         <el-row >
-          <el-col :lg="16" :sm="24"><candlestick style="width:100%" :coin="btccoin" ></candlestick></el-col>
+          <!-- <candlestick style="width:100%" :coin="btccoin" > -->
+          <el-col :lg="16" :sm="24"></candlestick></el-col>
           <el-col :lg="8" :sm="24"> <btctable></btctable></el-col>
         </el-row>
       </div>
@@ -46,6 +48,10 @@ export default {
   mounted(){
   },
   methods:{
+    ping:function(val){
+      console.log("click")
+      this.$socket.emit("coin","test")
+    },
     tabclick:function(val){
       if(val.$el.id=="pane-1"){
         this.coin="eth"

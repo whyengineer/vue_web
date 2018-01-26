@@ -14,7 +14,7 @@ import ECharts from 'vue-echarts'
 
 Vue.use(ElementUI);
 Vue.use(VueRouter);
-Vue.use(VueSocketio, socketio('api.whyengineer.com'));
+Vue.use(VueSocketio, socketio('127.0.0.1:1323'));
 Vue.component('chart', ECharts)
 
 const routes = [
